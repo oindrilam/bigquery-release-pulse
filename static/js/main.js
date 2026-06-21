@@ -18,6 +18,7 @@ const searchInput = document.getElementById('searchInput');
 const clearSearch = document.getElementById('clearSearch');
 const typeFilters = document.getElementById('typeFilters');
 const exportCsvBtn = document.getElementById('exportCsvBtn');
+const themeToggleBtn = document.getElementById('themeToggleBtn');
 
 // Composer Elements
 const noSelectionState = document.getElementById('noSelectionState');
@@ -522,6 +523,39 @@ function exportNotesToCSV() {
 
 if (exportCsvBtn) {
     exportCsvBtn.addEventListener('click', exportNotesToCSV);
+}
+
+// ==========================================================================
+// Theme Toggle Logic
+// ==========================================================================
+
+function applyTheme(theme) {
+    if (!themeToggleBtn) return;
+    const iconSun = themeToggleBtn.querySelector('.icon-sun');
+    const iconMoon = themeToggleBtn.querySelector('.icon-moon');
+    
+    if (theme === 'light') {
+        document.body.classList.add('light-theme');
+        if (iconSun) iconSun.style.display = 'none';
+        if (iconMoon) iconMoon.style.display = 'block';
+    } else {
+        document.body.classList.remove('light-theme');
+        if (iconSun) iconSun.style.display = 'block';
+        if (iconMoon) iconMoon.style.display = 'none';
+    }
+}
+
+// Initial theme load (immediately to prevent flash of unstyled content)
+const savedTheme = localStorage.getItem('theme') || 'dark';
+applyTheme(savedTheme);
+
+if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+        const isLight = document.body.classList.contains('light-theme');
+        const newTheme = isLight ? 'dark' : 'light';
+        localStorage.setItem('theme', newTheme);
+        applyTheme(newTheme);
+    });
 }
 
 // ==========================================================================
