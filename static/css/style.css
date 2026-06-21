@@ -993,3 +993,18 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* ==========================================================================
+   Copy to Clipboard & CSV Export Extra Styles
+   ========================================================================== */
+.note-actions {
+    flex-wrap: wrap;
+}
+
+.btn-copy.copied {
+    background: var(--badge-feature-bg) !important;
+    border-color: var(--badge-feature-text) !important;
+    color: var(--badge-feature-text) !important;
+    box-shadow: 0 0 10px rgba(20, 184, 166, 0.15);
+}
+
